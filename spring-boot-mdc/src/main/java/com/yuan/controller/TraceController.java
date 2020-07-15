@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j2;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
@@ -25,13 +24,12 @@ public class TraceController {
     /**
      * 简单线程跟踪
      *
-     * @param id
      * @return
      */
     @RequestMapping("/simple")
-    public User simpleTrace(@RequestParam("id") Long id) {
-        log.debug("简单线程traceId跟踪...,params={}", id);
-        User user = userService.getUserById(id);
+    public User simpleTrace() {
+        log.debug("简单线程traceId跟踪...");
+        User user = userService.getMockUser();
         log.info("返回结果={}", user);
         return user;
     }
@@ -40,12 +38,11 @@ public class TraceController {
      * 子线程跟踪
      */
     @RequestMapping("/thread")
-    public String childThread(@RequestParam("id") Long id) {
-        log.debug("子线程traceId跟踪...,params={}", id);
-        User user = userService.getUserById(id);
+    public String childThread() {
+        log.debug("子线程traceId跟踪...");
+        User user = userService.getMockUser();
 
         Map<String, String> contextMap = MDC.getCopyOfContextMap();
-
         new Thread(() -> {
             MDC.setContextMap(contextMap);
             userService.updateUser(user);

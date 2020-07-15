@@ -1,6 +1,5 @@
 package com.yuan.service.impl;
 
-import com.sun.istack.internal.NotNull;
 import com.yuan.entity.User;
 import com.yuan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,12 +16,8 @@ import java.util.Date;
 @Slf4j
 public class UserServiceImpl implements UserService {
     @Override
-    public User getUserById(@NotNull Long id) {
-        log.debug("获取用户信息,id={}", id);
-        if (id == 0) {
-            log.error("无效的id");
-            throw new RuntimeException("模拟异常,无效的id...");
-        }
+    public User getMockUser() {
+        log.debug("获取用户信息...");
         return new User("yuan", 22, new Date());
     }
 

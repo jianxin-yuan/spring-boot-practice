@@ -16,6 +16,10 @@
         <version>2.3.1.RELEASE</version>
     </parent>
 
+    <properties>
+        <docker.image.prefix>springboot</docker.image.prefix>
+    </properties>
+
     <dependencies>
         <!--web-->
         <dependency>
@@ -50,6 +54,15 @@
             <artifactId>hutool-all</artifactId>
             <version>5.0.3</version>
         </dependency>
+
+
+        <!--logstash-->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>6.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -57,6 +70,27 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <!--docker maven plugin-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <configuration>
+                    <!--镜像名称-->
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <!--jar包所在目录,默认target-->
+                            <directory>${project.build.directory}</directory>
+                            <!--jar包名称,默认${project.artifactId}-${project.version}}-->
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -73,7 +73,6 @@ public class ResponseWrapper implements ResponseBodyAdvice<Object> {
             log.error("request uri path: {}, format response body error", request.getURI().getPath(), e);
         }
 
-        log.info("response wrapper end.....");
         return wrapper;
     }
 }

@@ -8,7 +8,7 @@ import com.yuan.entity.User;
  */
 public interface UserService {
 
-    User getUserById(Long id);
+    User getMockUser();
 
     void updateUser(User user);
 
