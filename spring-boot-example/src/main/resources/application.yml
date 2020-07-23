@@ -1,0 +1,23 @@
+app:
+  secret: ki8po9cvtr3
+  id: yuan001
+
+
+my.hobby:
+  - a
+  - b
+
+server:
+  address: 127.0.0.1
+
+---
+spring:
+  profiles: dev
+server:
+  address: 192.168.1.10
+
+---
+spring:
+  profiles: prod
+server:
+  address: 10.10.12.80
