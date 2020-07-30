@@ -7,6 +7,8 @@ my.hobby:
   - a
   - b
 
+#sms.mock: true
+
 server:
   address: 127.0.0.1
 

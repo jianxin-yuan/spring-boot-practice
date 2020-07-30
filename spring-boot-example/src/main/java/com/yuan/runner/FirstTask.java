@@ -21,14 +21,19 @@ public class FirstTask implements CommandLineRunner {
     @Value("${server.address}")
     private String serverAddress;
 
+
+    @Value("${sms.mock:false}")
+    private boolean mock ;
+
     @Value("${test.name}")
     private String testName;
 
     @Override
     public void run(String... args) throws Exception {
-        log.info("this is first task,appSecret=" + appSecret+", appId="+appId);
-        log.info("server.address={}",serverAddress);
-        log.info("testName={}",testName);
+        log.info("this is first task,appSecret=" + appSecret + ", appId=" + appId);
+        log.info("server.address={}", serverAddress);
+        log.info("testName={}", testName);
+        log.info("sms.mock={}", mock);
     }
 
 }
